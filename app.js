@@ -6,19 +6,26 @@ var request = require('request');
 GLOBAL_ADMIN_EMAIL = 'admin@example.com'; //Make sure this account has admin access over all channels
 GLOBAL_ADMIN_TOKEN = 'GsY6d6itxGxj_GsG1BjA'; //Make sure that this is up to date
 
+
+var ORIEL = 3;
+var BALLIOT =  null;
+var HUGHES =  1;
+
+throw "You didn't fill out the channel id for Balliot!"
+
 /* Hard code these job 
  *  Make sure the that the start_time is a Date objec
  */
 var jobs = [
     {
-        start_time: moment().add(5, 'seconds').toDate(),
-        channel_id: 6, //Dev event channel
-        message: 'testing cron jobs'
+        start_time: moment('2015-05-06 02:01:20').toDate(),
+        channel_id: HUGHES,
+        message: 'testing cron jobs on testball'
     },
     {
-        start_time: moment('2015-05-06 01:10').toDate(),
-        channel_id: 6,
-        message: 'testing cron jobs again'
+        start_time: moment('2015-05-06 02:01:20').toDate(),
+        channel_id: HUGHES,
+        message: 'testing cron jobs on testball'
     },
 ]
 
