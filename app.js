@@ -23,55 +23,57 @@ var jobs = [
         message: 'The Ball will be opening in 5 minutes. Make sure you have your wristbands reading to be scanned.'
     },
     {
-        start_time: moment('2015-05-06 20:15:00').toDate(),
+        start_time: moment('2015-05-09 20:15:00').toDate(),
         channel_id: HUGHS,
         message: 'Welcome to the St Hugh’s Ball 2015. Our app will send you notifications throughout the night to keep you up to date.'
     },
     {
-        start_time: moment('2015-05-06 20:40:00').toDate(),
+        start_time: moment('2015-05-09 20:40:00').toDate(),
         channel_id: HUGHS,
         message: 'Oxford University Jazz Orchestra will be opening the Main Stage in 5 minutes!'
     },
     {
-        start_time: moment('2015-05-06 21:00:00').toDate(),
+        start_time: moment('2015-05-09 21:00:00').toDate(),
         channel_id: HUGHS,
         message: 'Remember to head over to our hair and makeup studio in The Meadows where our stylists will be providing touch ups all night. '
     },
     {
-        start_time: moment('2015-05-06 21:50:00').toDate(),
+        start_time: moment('2015-05-09 21:50:00').toDate(),
         channel_id: HUGHS,
         message: 'Please proceed to The Glade and following instructions from the Stewards in preparation for our firework and light show!'
     },
     {
-        start_time: moment('2015-05-06 22:20:00').toDate(),
+        start_time: moment('2015-05-09 22:20:00').toDate(),
         channel_id: HUGHS,
         message: 'The DJ Tent is now open with SWITCH from Oxford’s O2 Academy. Jamie Berry is on the Main Stage and Billie Black is now performing in The Enchanted Court.'
     },
     {
-        start_time: moment('2015-05-06 23:15:00').toDate(),
+        start_time: moment('2015-05-09 23:15:00').toDate(),
         channel_id: HUGHS,
         message: 'K Stewart is now performing in The Enchanted Court. DFO will be beginning on the Main Stage shortly.'
     },
     {
-        start_time: moment('2015-05-07 00:15:00').toDate(),
+        start_time: moment('2015-05-10 00:15:00').toDate(),
         channel_id: HUGHS,
         message: 'Amber Run will now be taking over The Enchanted Court and our DJ headliner, Karma Kid is now starting in the DJ Tent.'
     },
     {
-        start_time: moment('2015-05-07 00:55:00').toDate(),
+        start_time: moment('2015-05-10 00:55:00').toDate(),
         channel_id: HUGHS,
         message: 'The Correspondents will be closing our Main Stage in 5 minutes.'
     },
     {
-        start_time: moment('2015-05-07 02:00:00').toDate(),
+        start_time: moment('2015-05-10 02:00:00').toDate(),
         channel_id: HUGHS,
         message: 'Head over to the Main Stage to experience our enormous silent disco!'
     },
-        start_time: moment('2015-05-07 03:00:00').toDate(),
+    {
+        start_time: moment('2015-05-10 03:00:00').toDate(),
         channel_id: HUGHS,
         message: 'We will shortly be serving a selection of breakfast pastries in The Orchard, where tea and coffee is still available.'
     },
-        start_time: moment('2015-05-07 04:15:00').toDate(),
+    {
+        start_time: moment('2015-05-10 04:15:00').toDate(),
         channel_id: HUGHS,
         message: 'The St Hugh’s Ball will be ending shortly, please follow directions from the Stewards and make your way to the exit.'
     },
