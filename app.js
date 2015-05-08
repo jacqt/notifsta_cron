@@ -67,10 +67,12 @@ var jobs = [
         channel_id: HUGHS,
         message: 'Head over to the Main Stage to experience our enormous silent disco!'
     },
+    {
         start_time: moment('2015-05-07 03:00:00').toDate(),
         channel_id: HUGHS,
         message: 'We will shortly be serving a selection of breakfast pastries in The Orchard, where tea and coffee is still available.'
     },
+    {
         start_time: moment('2015-05-07 04:15:00').toDate(),
         channel_id: HUGHS,
         message: 'The St Hugh’s Ball will be ending shortly, please follow directions from the Stewards and make your way to the exit.'
