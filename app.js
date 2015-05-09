@@ -39,12 +39,12 @@ var jobs = [
     {
         start_time: moment('2015-05-09 19:55:00').toDate(),
         channel_id: HUGHS,
-        message: 'The Ball will be opening in 5 minutes. Make sure you have your wristbands reading to be scanned.'
+        message: "St Hugh's Ball will be opening in 5 minutes. Make sure you have your wristbands reading to be scanned."
     },
     {
         start_time: moment('2015-05-09 20:15:00').toDate(),
         channel_id: HUGHS,
-        message: 'Welcome to the St Hugh’s Ball 2015. Our app will send you notifications throughout the night to keep you up to date.'
+        message: "Welcome to the St Hugh's Ball 2015. Our app will send you notifications throughout the night to keep you up to date."
     },
     {
         start_time: moment('2015-05-09 20:40:00').toDate(),
@@ -64,7 +64,7 @@ var jobs = [
     {
         start_time: moment('2015-05-09 22:20:00').toDate(),
         channel_id: HUGHS,
-        message: 'The DJ Tent is now open with SWITCH from Oxford’s O2 Academy. Jamie Berry is on the Main Stage and Billie Black is now performing in The Enchanted Court.'
+        message: "The DJ Tent is now open with SWITCH from Oxford's O2 Academy. Jamie Berry is on the Main Stage and Billie Black is now performing in The Enchanted Court."
     },
     {
         start_time: moment('2015-05-09 23:15:00').toDate(),
@@ -94,7 +94,7 @@ var jobs = [
     {
         start_time: moment('2015-05-10 04:15:00').toDate(),
         channel_id: HUGHS,
-        message: 'The St Hugh’s Ball will be ending shortly, please follow directions from the Stewards and make your way to the exit.'
+        message: "The St Hugh's Ball will be ending shortly, please follow directions from the Stewards and make your way to the exit."
     },
     {
         start_time: moment('2015-05-10 04:30:00').toDate(),
@@ -116,57 +116,57 @@ var jobs = [
     {
         start_time: moment('2015-05-09 20:30:00').toDate(),
         channel_id: KEBLE,
-        message: 'Beer Pressure in Hayward Quad'
+        message: 'Head over to Hayward Quad to hear Beer Pressure perform!'
     },
     {
         start_time: moment('2015-05-09 21:00:00').toDate(),
         channel_id: KEBLE,
-        message: 'Mama Brass in Pusey Quad'
+        message: 'Mama Brass will now begin playing in Pusey Quad'
     },
     {
         start_time: moment('2015-05-09 21:15:00').toDate(),
         channel_id: KEBLE,
-        message: 'Reprobate in Hayward Quad'
+        message: 'Reprobate will now start their performance at Hayward Quad'
     },
     {
         start_time: moment('2015-05-09 22:00:00').toDate(),
         channel_id: KEBLE,
-        message: 'Little Comets in Pusey Quad'
+        message: 'The Little Comets is now performing in Pusey Quad'
     },
     {
         start_time: moment('2015-05-09 22:00:00').toDate(),
         channel_id: KEBLE,
-        message: 'Garfunkel in the Hayward Quad'
+        message: 'Garfunkel is about to start playing in the Hayward Quad'
     },
     {
         start_time: moment('2015-05-09 23:00:00').toDate(),
         channel_id: KEBLE,
-        message: 'The Busy Twist in the Hayward Quad'
+        message: 'The Busy Twist will now take over music in the Hayward Quad'
     },
     {
         start_time: moment('2015-05-09 23:15:00').toDate(),
         channel_id: KEBLE,
-        message: 'Applebottom in Pusey Quad'
+        message: 'Welcome Applebottom to the stage in Pusey Quad'
     },
     {
         start_time: moment('2015-05-10 00:00:00').toDate(),
         channel_id: KEBLE,
-        message: 'Toddla T will in Pusey Quad'
+        message: 'Toddla T will begin his performance in Pusey Quad now'
     },
     {
         start_time: moment('2015-05-10 00:30:00').toDate(),
         channel_id: KEBLE,
-        message: 'Sink the Pink in Hayward Quad'
+        message: 'Sink the Pink will now be performing in Hayward Quad'
     },
     {
         start_time: moment('2015-05-10 01:00:00').toDate(),
         channel_id: KEBLE,
-        message: 'Jonas Rathsman begin performing at Pusey Quad'
+        message: 'Jonas Rathsman will begin his performance at Pusey Quad'
     },
     {
         start_time: moment('2015-05-10 02:00:00').toDate(),
         channel_id: KEBLE,
-        message: 'Silent Disco'
+        message: "It's time for our Silent Disco! Head over to Hayword & Liddon Quad to get started"
     },
     {
         start_time: moment('2015-05-10 04:15:00').toDate(),
