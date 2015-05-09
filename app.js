@@ -6,6 +6,24 @@ var request = require('request');
 GLOBAL_ADMIN_EMAIL = 'admin@example.com'; //Make sure this account has admin access over all channels
 GLOBAL_ADMIN_TOKEN = 'GsY6d6itxGxj_GsG1BjA'; //Make sure that this is up to date
 
+//Test to see if the login credentials work
+request.get('http://api.notifsta.com/v1/events',{
+    form: {
+            'user_email': GLOBAL_ADMIN_EMAIL,
+            'user_token': GLOBAL_ADMIN_TOKEN,
+    }
+}, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+          console.log('Validated authentication details');
+        } else {
+          console.log(error);
+          console.log(response.body);
+          throw "No interent connection or admin email and admin token incorrect!";
+        }
+    }
+);
+
+
 
 var ORIEL = 3;
 var BALLIOL =  8;
