@@ -36,11 +36,11 @@ var KEBLE = 15;
  */
 var jobs = [
 //St hugh's notifications
-    {
-        start_time: moment('2015-05-09 17:00:00').toDate(),
-        channel_id: HUGHS,
-        message: "Don't forget your tickets, St Hugh's Ball will be opening in 3 hours!"
-    },
+    //{
+        //start_time: moment('2015-05-09 17:00:00').toDate(),
+        //channel_id: HUGHS,
+        //message: "Don't forget your tickets, St Hugh's Ball will be opening in 3 hours!"
+    //},
     {
         start_time: moment('2015-05-09 19:55:00').toDate(),
         channel_id: HUGHS,
