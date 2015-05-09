@@ -17,6 +17,7 @@ var KEBLE = 15;
  *  Make sure the that the start_time is a Date object
  */
 var jobs = [
+//St hugh's notifications
     {
         start_time: moment('2015-05-09 19:55:00').toDate(),
         channel_id: HUGHS,
@@ -78,10 +79,134 @@ var jobs = [
         message: 'The St Hugh’s Ball will be ending shortly, please follow directions from the Stewards and make your way to the exit.'
     },
     {
-        start_time: moment('2015-05-09 04:30:00').toDate(),
+        start_time: moment('2015-05-10 04:30:00').toDate(),
         channel_id: HUGHS,
         message: 'We hope you had a truly unforgettable evening! Check our Facebook page as we will be releasing photos from tonight over the week.'
-    }
+    },
+
+//Keble ball notifications
+    {
+        start_time: moment('2015-05-09 19:55:00').toDate(),
+        channel_id: KEBLE,
+        message: 'Keble Ball will be opening in 5 minutes!'
+    },
+    {
+        start_time: moment('2015-05-09 20:15:00').toDate(),
+        channel_id: KEBLE,
+        message: 'Welcome to the Keble Ball 2015. Our app will send you notifications throughout the night to keep you up to date.'
+    },
+    {
+        start_time: moment('2015-05-09 20:30:00').toDate(),
+        channel_id: KEBLE,
+        message: 'Beer Pressure in Hayward Quad'
+    },
+    {
+        start_time: moment('2015-05-09 21:00:00').toDate(),
+        channel_id: KEBLE,
+        message: 'Mama Brass in Pusey Quad'
+    },
+    {
+        start_time: moment('2015-05-09 21:15:00').toDate(),
+        channel_id: KEBLE,
+        message: 'Reprobate in Hayward Quad'
+    },
+    {
+        start_time: moment('2015-05-09 22:00:00').toDate(),
+        channel_id: KEBLE,
+        message: 'Little Comets in Pusey Quad'
+    },
+    {
+        start_time: moment('2015-05-09 22:00:00').toDate(),
+        channel_id: KEBLE,
+        message: 'Garfunkel in the Hayward Quad'
+    },
+    {
+        start_time: moment('2015-05-09 23:00:00').toDate(),
+        channel_id: KEBLE,
+        message: 'The Busy Twist in the Hayward Quad'
+    },
+    {
+        start_time: moment('2015-05-09 23:15:00').toDate(),
+        channel_id: KEBLE,
+        message: 'Applebottom in Pusey Quad'
+    },
+    {
+        start_time: moment('2015-05-10 00:00:00').toDate(),
+        channel_id: KEBLE,
+        message: 'Toddla T will in Pusey Quad'
+    },
+    {
+        start_time: moment('2015-05-10 00:30:00').toDate(),
+        channel_id: KEBLE,
+        message: 'Sink the Pink in Hayward Quad'
+    },
+    {
+        start_time: moment('2015-05-10 01:00:00').toDate(),
+        channel_id: KEBLE,
+        message: 'Jonas Rathsman beging performing at Pusey Quad'
+    },
+    {
+        start_time: moment('2015-05-10 02:00:00').toDate(),
+        channel_id: KEBLE,
+        message: 'Silent Disco'
+    },
+    {
+        start_time: moment('2015-05-10 04:15:00').toDate(),
+        channel_id: KEBLE,
+        message: 'We hope you had a truly unforgettable evening! Check our Facebook page as we will be releasing photos from tonight over the week.'
+    },
+
+// Balliol Ball
+    {
+        start_time: moment('2015-05-09 19:25:00').toDate(),
+        channel_id: BALLIOL,
+        message: 'Balliol Ball will be opening in 5 minutes!'
+    },
+    {
+        start_time: moment('2015-05-09 19:30:00').toDate(),
+        channel_id: BALLIOL,
+        message: 'Welcome to the Balliol Ball 2015. Our app will send you notifications throughout the night to keep you up to date.'
+    },
+    {
+        start_time: moment('2015-05-09 19:30:00').toDate(),
+        channel_id: BALLIOL,
+        message: 'Fourplay will begin in the Front Quad now'
+    },
+    {
+        start_time: moment('2015-05-09 19:45:00').toDate(),
+        channel_id: BALLIOL,
+        message: 'Fire Poi will begin the Fellows Garden'
+    },
+    {
+        start_time: moment('2015-05-09 20:00:00').toDate(),
+        channel_id: BALLIOL,
+        message: 'The Casino is open at the JCR, and the DFO is starting at the Mainstage'
+    },
+    {
+        start_time: moment('2015-05-09 21:00:00').toDate(),
+        channel_id: BALLIOL,
+        message: 'Walt Frisbee will now begin performing at the Mainstage'
+    },
+    {
+        start_time: moment('2015-05-09 22:00:00').toDate(),
+        channel_id: BALLIOL,
+        message: 'Whitecliffe will now takeover at the the Mainstage'
+    },
+    {
+        start_time: moment('2015-05-09 23:00:00').toDate(),
+        channel_id: BALLIOL,
+        message: 'Welcome Bipolar Sunshine to the stage!'
+    },
+    {
+        start_time: moment('2015-05-10 00:00:00').toDate(),
+        channel_id: BALLIOL,
+        message: 'Silent Disco is going begin now'
+    },
+    {
+        start_time: moment('2015-05-10 02:15:00').toDate(),
+        channel_id: BALLIOL,
+        message: 'We hope you had a truly unforgettable evening! Check our Facebook page as we will be releasing photos from tonight over the week.'
+    },
 ]
 
 
