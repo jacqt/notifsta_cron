@@ -37,6 +37,11 @@ var KEBLE = 15;
 var jobs = [
 //St hugh's notifications
     {
+        start_time: moment('2015-05-09 17:00:00').toDate(),
+        channel_id: HUGHS,
+        message: "Don't forget your tickets, St Hugh's Ball will be opening in 3 hours!"
+    },
+    {
         start_time: moment('2015-05-09 19:55:00').toDate(),
         channel_id: HUGHS,
         message: "St Hugh's Ball will be opening in 5 minutes. Make sure you have your wristbands reading to be scanned."
@@ -193,22 +198,22 @@ var jobs = [
     {
         start_time: moment('2015-05-09 19:45:00').toDate(),
         channel_id: BALLIOL,
-        message: 'Fire Poi will begin the Fellows Garden'
+        message: 'Head over to the Fellows Garden to check out the Fire Poi performance!'
     },
     {
         start_time: moment('2015-05-09 20:00:00').toDate(),
         channel_id: BALLIOL,
-        message: 'The Casino is open at the JCR, and the DFO is starting at the Mainstage'
+        message: 'The Casino is open at the JCR, and the DFO is starting at the Mainstage now'
     },
     {
         start_time: moment('2015-05-09 21:00:00').toDate(),
         channel_id: BALLIOL,
-        message: 'Walt Frisbee will now begin performing at the Mainstage'
+        message: 'Welcome DJ Walt Frisbee to the Mainstage'
     },
     {
         start_time: moment('2015-05-09 22:00:00').toDate(),
         channel_id: BALLIOL,
-        message: 'Whitecliffe will now takeover at the the Mainstage'
+        message: 'Whitecliffe will now takeover at the Mainstage'
     },
     {
         start_time: moment('2015-05-09 23:00:00').toDate(),
@@ -218,7 +223,7 @@ var jobs = [
     {
         start_time: moment('2015-05-10 00:00:00').toDate(),
         channel_id: BALLIOL,
-        message: 'Silent Disco is going begin now'
+        message: 'Silent Disco will begin now at the Mainstage'
     },
     {
         start_time: moment('2015-05-10 02:15:00').toDate(),
