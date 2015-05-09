@@ -143,7 +143,7 @@ var jobs = [
     {
         start_time: moment('2015-05-10 01:00:00').toDate(),
         channel_id: KEBLE,
-        message: 'Jonas Rathsman beging performing at Pusey Quad'
+        message: 'Jonas Rathsman begin performing at Pusey Quad'
     },
     {
         start_time: moment('2015-05-10 02:00:00').toDate(),
