@@ -1,3 +1,5 @@
 node_modules
 *swp
 *~
+nohup.out
+proc_pid
