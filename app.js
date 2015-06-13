@@ -39,12 +39,12 @@ var ROBINSON = 41;
 var jobs_parsed = [
     {
         "channel_id": 28,
-        "message": "Enjoy our glamorous champagne reception with the smooth jazz from the Edward Wren Trio",
+        "message": "Enjoy our glamorous champagne reception with the smooth jazz from the Edward Wren Trio.",
         "start_time": "June 13, 2015 9:00 PM"
     },
     {
         "channel_id": 28,
-        "message": "Made up of the eight choral scholars of the world-class New College Choir, the New Men bring fun, charisma and outstanding sound.  From upbeat humour to yearning close harmonies, this a cappella group has it all!",
+        "message": "Made up of the eight choral scholars of the world-class New College Choir, the New Men bring fun, charisma and outstanding sound.  From upbeat humour to yearning close harmonies, this a cappella group has it all!.",
         "start_time": "June 13, 2015 10:15 PM"
     },
     {
@@ -99,27 +99,27 @@ var jobs_parsed = [
     },
     {
         "channel_id": 28,
-        "message": "Moroccan Mint Mojito is now being served in Rick's Cafe",
+        "message": "Moroccan Mint Mojito is now being served in Rick's Cafe.",
         "start_time": "June 13, 2015 11:05 PM"
     },
     {
         "channel_id": 28,
-        "message": "French 75 is now being served in the Casino",
+        "message": "French 75 is now being served in the Casino.",
         "start_time": "June 14, 2015 12:00 AM"
     },
     {
         "channel_id": 28,
-        "message": "\"Here's to looking at You, Kid\" Whiskey Cocktail is now being served in the Blue Parrot Bar",
+        "message": "\"Here's to looking at You, Kid\" Whiskey Cocktail is now being served in the Blue Parrot Bar.",
         "start_time": "June 14, 2015 1:00 AM"
     },
     {
         "channel_id": 28,
-        "message": "Casablanca Sunrise is now being served in Rick's Cafe",
+        "message": "Casablanca Sunrise is now being served in Rick's Cafe.",
         "start_time": "June 14, 2015 1:15 AM"
     },
     {
         "channel_id": 28,
-        "message": "Mimosas are now being served at the Fountain",
+        "message": "Mimosas are now being served at the Fountain.",
         "start_time": "June 14, 2015 4:00 AM"
     }
 ];
