@@ -36,80 +36,14 @@ var ROBINSON = 41;
 /* Hard code these job 
  *  Make sure the that the start_time is a Date object
  */
-var jobs = [
-    {
-        start_time: moment('2015-06-12 22:00:00').toDate(),
-        channel_id: ROBINSON,
-        message: "Get pumped. It's time for our headliner, Sunset Sons"
-    },
-    {
-        start_time: moment('2015-06-12 22:30:00').toDate(),
-        channel_id: ROBINSON,
-        message: "It's sushi time! Head to High Court"
-    },
-    {
-        start_time: moment('2015-06-12 22:45:00').toDate(),
-        channel_id: ROBINSON,
-        message: "Don't miss the fireworks! Head to the Gardens for the best view"
-    },
-    {
-        start_time: moment('2015-06-12 23:10:00').toDate(),
-        channel_id: ROBINSON,
-        message: "Saint Raymond time on Main Stage!"
-    },
-    {
-        start_time: moment('2015-06-13 00:00:00').toDate(),
-        channel_id: ROBINSON,
-        message: "Pretend to be an adult and head up to the 'Grown Ups Only Area' for wine, cheese, and jazz..."
-    },
-    {
-        start_time: moment('2015-06-13 00:30:00').toDate(),
-        channel_id: ROBINSON,
-        message: "Stick around Main Stage for our third headliner, Romare!"
-    },
-    {
-        start_time: moment('2015-06-13 01:00:00').toDate(),
-        channel_id: ROBINSON,
-        message: "Getting sleepy? Coffee and Tea is available from the Garden Restaraunt"
-    },
-    {
-        start_time: moment('2015-06-13 01:10:00').toDate(),
-        channel_id: ROBINSON,
-        message: "Ahir Shah at the 'Robinson Fringe' in the Auditorium"
-    },
-    {
-        start_time: moment('2015-06-13 01:25:00').toDate(),
-        channel_id: ROBINSON,
-        message: "Learn to Salsa Dance in the Hall"
-    },
-    {
-        start_time: moment('2015-06-13 02:05:00').toDate(),
-        channel_id: ROBINSON,
-        message: "Patrizio and Richard Smith on Main Stage now!"
-    },
-    {
-        start_time: moment('2015-06-13 02:40:00').toDate(),
-        channel_id: ROBINSON,
-        message: "It's our final Comedy Headliner, John Gordillo at the 'Robinson Fringe'"
-    },
-    {
-        start_time: moment('2015-06-13 03:00:00').toDate(),
-        channel_id: ROBINSON,
-        message: "Breakfast is served. Bacon butties in the Garden, pastries and juices in the Garden Restaurant"
-    },
-    {
-        start_time: moment('2015-06-13 03:25:00').toDate(),
-        channel_id: ROBINSON,
-        message: "It's tribute time! The Killerz on the Main Stage"
-    },
-    {
-        start_time: moment('2015-06-13 04:55:00').toDate(),
-        channel_id: ROBINSON,
-        message: "Survivors photo now in the Gardens!"
-    }
-]
-
-
+var jobs_parsed = []
+var jobs = jobs_parsed.map(function(j){
+  return {
+    start_time: moment(j.start_time).toDate(),
+    channel_id: j.channel_id,
+    message: j.message
+  }
+});
 
 jobs.map(function (job){
     function on_job_start(){
