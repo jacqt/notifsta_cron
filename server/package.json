@@ -1,0 +1,30 @@
+{
+  "name": "notifsta_cron",
+  "version": "1.0.0",
+  "description": "cron jobs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jacqt/notifsta_cron.git"
+  },
+  "author": "Anthony Guo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jacqt/notifsta_cron/issues"
+  },
+  "homepage": "https://github.com/jacqt/notifsta_cron",
+  "dependencies": {
+    "body-parser": "^1.12.4",
+    "cron": "^1.0.9",
+    "csv": "^0.4.5",
+    "express": "^4.12.4",
+    "moment": "^2.10.2",
+    "monk": "^1.0.1",
+    "multer": "^0.1.8",
+    "node-uuid": "^1.4.3",
+    "request": "^2.55.0"
+  }
+}
