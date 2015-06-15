@@ -69,9 +69,12 @@ function StartServer() {
             }
         }, function (error, response, body) {
             if (!error && response.statusCode == 200) { // Successfully got the event_id
-                console.log(body);
-                var data = JSON.parse(body);
-                var event_id = data.data.event_id;
+                try {
+                    var data = JSON.parse(body);
+                    var event_id = data.data.event_id;
+                } catch (err) {
+                    failure();
+                }
 
                 // Check if user admin of th event 
                 request.get('http://api.notifsta.com/v1/events/' + event_id + '/check_admin', { 
