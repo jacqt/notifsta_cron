@@ -301,6 +301,7 @@ function StartServer() {
         }
     });
     
+    console.log('Listening on port 3403');
     app.listen(3403);
 }
 
