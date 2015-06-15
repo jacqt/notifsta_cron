@@ -1,4 +1,4 @@
-var DEBUGGING = false;
+var DEBUGGING = true;
 
 var CronJob = require('cron').CronJob; // NodeCron Library
 var moment = require('moment'); // MomentJs Time library
@@ -60,7 +60,8 @@ NotifstaCronJob.prototype.UpdateCronJob = function () {
     this.cron_job = SetJob({
         channel_id: this.channel_id,
         start_time: this.start_time,
-        message: this.message
+        message: this.message,
+        id: this.id
     });
 }
 
@@ -70,14 +71,21 @@ function GenerateId() {
 
 function SetJob(job) {
     function on_job_start() {
-        SendNotification(job.channel_id, job.message)
+        SendNotification(job.channel_id, job.message, on_successful_send);
     }
     
     function on_job_end() {
     }
     
     function on_successful_send() {
-        DeleteJob(job);
+        try {
+            DeleteJob(job.id);
+        } catch (err) {
+            console.log(JSON.stringify({
+                type: "error",
+                message: err
+            }));
+        }
     }
     try {
         var cron_job = new CronJob(
@@ -102,6 +110,9 @@ function SendNotification(channel_id, message, callback) {
         message: message,
     }));
     if (DEBUGGING) {
+        if (callback) {
+            callback();
+        }
         return;
     }
     request.post('http://api.notifsta.com/v1/channels/' + channel_id + '/notifications', {
@@ -135,6 +146,7 @@ function AddJob(channel_id, start_time, message, job_id) {
 function DeleteJob(job_id) {
     var job = jobs[job_id];
     if (!job) {
+        console.log(job_id);
         throw "Scheduled notification not found in database"
     }
     job.Cancel();
