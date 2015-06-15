@@ -73,7 +73,7 @@ function StartServer() {
                     var data = JSON.parse(body);
                     var event_id = data.data.event_id;
                 } catch (err) {
-                    failure();
+                    return failure();
                 }
 
                 // Check if user admin of th event 

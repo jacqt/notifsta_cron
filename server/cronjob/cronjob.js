@@ -1,4 +1,4 @@
-var DEBUGGING = true;
+var DEBUGGING = false;
 
 var CronJob = require('cron').CronJob; // NodeCron Library
 var moment = require('moment'); // MomentJs Time library
