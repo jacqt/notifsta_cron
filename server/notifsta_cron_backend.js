@@ -52,22 +52,45 @@ function StartServer() {
     app.use(multer()); // for parsing multipart/form-data
     app.use(allowCrossDomain);
     
-    function VerifyAdmin(user_email, user_token, event_id, success, failure) {
-        // Test to see if the user_email, user_token, event_id is a valid triple
-        console.log(user_email, user_token, event_id);
-        request.get('http://api.notifsta.com/v1/events/' + event_id + '/check_admin', {
+    function VerifyAdmin(user_email, user_token, channel_id, success, failure) {
+        // Test to see if the user_email, user_token, channel_id is a valid triple
+        console.log(JSON.stringify({
+            type: "checking_authentication",
+            user_email: user_email, 
+            user_token: user_token, 
+            channel_id: channel_id
+        }));
+        
+        // First get the event that the channel_id belongs to
+        request.get('http://api.notifsta.com/v1/channels/' + channel_id, {
             form: {
                 'user_email': user_email,
                 'user_token': user_token,
             }
         }, function (error, response, body) {
-            if (!error && response.statusCode == 200) {
-                success();
+            if (!error && response.statusCode == 200) { // Successfully got the event_id
+                console.log(body);
+                var data = JSON.parse(body);
+                var event_id = data.data.event_id;
+
+                // Check if user admin of th event 
+                request.get('http://api.notifsta.com/v1/events/' + event_id + '/check_admin', { 
+                    form: {
+                        'user_email': user_email,
+                        'user_token': user_token,
+                    }
+                }, function (error, response, body) {
+                    if (!error && response.statusCode == 200) {
+                        success();
+                    } else {
+                        failure();
+                    }
+                }
+                );
             } else {
                 failure();
             }
-        }
-        );
+        });
 
     }
     
@@ -77,13 +100,12 @@ function StartServer() {
     app.get('/scheduled_notifications/:channel_id', function (req, res) {
         try {
             var channel_id = parseInt(req.params.channel_id);
-            var event_id = parseInt(req.query.event_id);
             var user_email = req.query.user_email;
             var user_token = req.query.user_token;
         } catch (err) {
             return res.send({ status: "error", data: err })
         }
-        VerifyAdmin(user_email, user_token, event_id, success, error);
+        VerifyAdmin(user_email, user_token, channel_id, success, error);
         
         function error() {
             res.send({
@@ -121,7 +143,6 @@ function StartServer() {
     app.post('/scheduled_notifications/:channel_id', function (req, res) {
         try {
             var channel_id = parseInt(req.params.channel_id);
-            var event_id = parseInt(req.query.event_id);
             var user_email = req.query.user_email;
             var user_token = req.query.user_token;
             if (!req.body || !req.body.notification) {
@@ -140,7 +161,7 @@ function StartServer() {
             return res.send({ status: "error", data: "Invalid Date - use ISO 8601" })
         }
 
-        VerifyAdmin(user_email, user_token, event_id, success, error);
+        VerifyAdmin(user_email, user_token, channel_id, success, error);
         function error() {
             res.send({
                 status: "error",
@@ -200,7 +221,6 @@ function StartServer() {
         try {
             var job_id = req.params.job_id;
             var channel_id = parseInt(req.params.channel_id);
-            var event_id = parseInt(req.query.event_id);
             var user_email = req.query.user_email;
             var user_token = req.query.user_token;
             if (!req.body || !req.body.notification) {
@@ -216,7 +236,7 @@ function StartServer() {
             return res.send({ status: "error" , data: { name : "Invalid parameters", err: err } });
         }
         
-        VerifyAdmin(user_email, user_token, event_id, success, error);
+        VerifyAdmin(user_email, user_token, channel_id, success, error);
         function error() {
             res.send({
                 status: "error",
@@ -267,14 +287,13 @@ function StartServer() {
     app.delete('/scheduled_notifications/:channel_id/:job_id', function (req, res) {
         try {
             var job_id = req.params.job_id;
-            var event_id = parseInt(req.query.event_id);
             var user_email = req.query.user_email;
             var user_token = req.query.user_token;
             notifsta_cronjob.DeleteJob(job_id);
         } catch (err) {
             return res.send({ status: "error", data: err })
         }
-        VerifyAdmin(user_email, user_token, event_id, success, error);
+        VerifyAdmin(user_email, user_token, channel_id, success, error);
         function error() {
             res.send({
                 status: "error",
