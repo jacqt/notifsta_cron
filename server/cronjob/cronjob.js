@@ -70,14 +70,21 @@ function GenerateId() {
 
 function SetJob(job) {
     function on_job_start() {
-        SendNotification(job.channel_id, job.message)
+        SendNotification(job.channel_id, job.message, on_successful_send);
     }
     
     function on_job_end() {
     }
     
     function on_successful_send() {
-        DeleteJob(job);
+        try {
+            DeleteJob(job.id);
+        } catch (err) {
+            console.log(JSON.stringify({
+                type: "error",
+                message: err
+            }));
+        }
     }
     try {
         var cron_job = new CronJob(
