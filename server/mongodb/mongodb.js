@@ -58,9 +58,11 @@ function DeleteCronJob(job_id) {
 }
 function UpdateCronJob(job_id, start_time, message) {
     return db.get('cronjobs').update({ id: job_id }, {
-        id: job_id,
-        start_time: start_time.toISOString(),
-        message: message
+        $set : {
+            id: job_id,
+            start_time: start_time.toISOString(),
+            message: message
+        }
     });
 }
 

@@ -1,9 +1,21 @@
+// TODO: revert changes to the scheduled notif if database store fails
+
 var express = require('express');
 var app = express();
-var bodyParser = require('body-parser')
 var http = require('http').Server(app);
 var moment = require('moment');
+
+
+// Middleware
+var bodyParser = require('body-parser')
 var multer = require('multer');
+var allowCrossDomain = function (req, res, next) {
+    res.header('Access-Control-Allow-Origin', 'http://localhost:5000, *notifsta.com'); //R
+    res.header('Access-Control-Allow-Origin', 'http://localhost:5000'); //R
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+}
 
 var notifsta_cronjob = require('./cronjob/cronjob.js');
 var notifsta_mongodb = require('./mongodb/mongodb.js');
@@ -34,10 +46,6 @@ function InitializeServer(callback){
 }
 
 
-function ValidateTime(time_string){
-
-}
-
 function StartServer(){
     /* Create a scheduled notification
      * Params: None
@@ -45,15 +53,22 @@ function StartServer(){
     app.use(bodyParser.json()); // for parsing application/json
     app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
     app.use(multer()); // for parsing multipart/form-data
-    
+    app.use(allowCrossDomain); 
 
     app.get('/scheduled_notifications/:channel_id', function (req, res) {
         var channel_id = parseInt(req.params.channel_id);
         var promise = notifsta_mongodb.GetCronJobs(channel_id);
         promise.success(function (docs){
-            res.send(docs.filter(function (job) {
-                return moment(job.start_time) > moment();
-            }));
+            res.send({
+                status: "success",
+                data: docs.filter(function (job) {
+                    return moment(job.start_time) > moment();
+                })
+            });
+            console.log(JSON.stringify({
+                type: "retrieved_notifications",
+                channel_id: channel_id
+            }))
         })
     });
     
@@ -68,21 +83,29 @@ function StartServer(){
      *
      */
     app.post('/scheduled_notifications/:channel_id', function (req, res) {
-        var channel_id = parseInt(req.params.channel_id);
-        var user_email = req.query.user_email;
-        var user_token = req.query.user_token;
-        var notifguts  = req.body.notification.notification_guts;
-        var type       = req.body.notification.type;
-        var start_time = moment(req.body.notification.start_time, moment.ISO_8601);
+        try {
+            var channel_id = parseInt(req.params.channel_id);
+            var user_email = req.query.user_email;
+            var user_token = req.query.user_token;
+            if (!req.body || !req.body.notification) {
+                var notifguts  = req.query.notification.notification_guts;
+                var type       = req.query.notification.type;
+                var start_time = moment(req.query.notification.start_time, moment.ISO_8601);
+            } else {
+                var notifguts  = req.body.notification.notification_guts;
+                var type       = req.body.notification.type;
+                var start_time = moment(req.body.notification.start_time, moment.ISO_8601);
+            }
+        } catch (err) {
+            return res.send({ status: "error" , data: { name : "Invalid parameters", err: err } });
+        }
         if (!start_time.isValid()) {
-            res.send({ status: "error", data: "Invalid Date - use ISO 8601" })
-            return;
+            return res.send({ status: "error", data: "Invalid Date - use ISO 8601" })
         }
 
         var new_job = notifsta_cronjob.AddJob(channel_id, start_time, notifguts);
         if (!new_job.cron_job) {
-            res.send({ status: "error"})
-            return;
+            return res.send( { status: "error", data: "Failed to schedule notification" })
         }
         var promise = notifsta_mongodb.InsertCronJob(
             new_job.id,
@@ -100,45 +123,108 @@ function StartServer(){
                     message: new_job.message
                 }
             });
+            console.log(JSON.stringify({
+                type: 'created_new_job',
+                id: new_job.id,
+                channel_id: new_job.channel_id,
+                start_time: new_job.start_time.toISOString(),
+                message: new_job.message
+            }))
         })
         promise.error(function (err){
             console.log(err);
-            notifsta_cronjob.RemoveJob(new_job.id);// remove cron job
-            res.send({
-                status: "error"
-            })
+            notifsta_cronjob.DeleteJob(new_job.id);// remove cron job
+            res.send({ status: "error", data: "Failed to add notification to database" })
         })
     });
+
+    /* Updates a scheduled notification
+     * Params:
+     *  user_email : String,
+     *  user_token : String,
+     *  notification[notification_guts] : String,
+     *  notification[type] : { Survey | Message },
+     *  notification[start_time]: ISO Datetime String
+     *  options[] : Array[String],
+     *
+     */
     app.patch('/scheduled_notifications/:channel_id/:job_id', function (req, res) {
-        var job_id     = req.params.job_id;
-        var channel_id = parseInt(req.params.channel_id);
-        var user_email = req.query.user_email;
-        var user_token = req.query.user_token;
-        var notifguts  = req.body.notification.notification_guts;
-        var type       = req.body.notification.type;
-        var start_time = moment(req.body.notification.start_time, moment.ISO_8601);
-        if (!start_time.isValid()) {
-            res.send({ status: "error", data: "Invalid Date - use ISO 8601" })
-            return;
+        try {
+            var job_id     = req.params.job_id;
+            var channel_id = parseInt(req.params.channel_id);
+            var user_email = req.query.user_email;
+            var user_token = req.query.user_token;
+            if (!req.body || !req.body.notification) {
+                var notifguts  = req.query.notification.notification_guts;
+                var type       = req.query.notification.type;
+                var start_time = moment(req.query.notification.start_time, moment.ISO_8601);
+            } else {
+                var notifguts  = req.body.notification.notification_guts;
+                var type       = req.body.notification.type;
+                var start_time = moment(req.body.notification.start_time, moment.ISO_8601);
+            }
+        } catch (err) {
+            return res.send({ status: "error" , data: { name : "Invalid parameters", err: err } });
         }
-        var job = notifsta_cronjob.UpdateJob(job_id, moment(start_time), notifguts);
+        
+
+        try {
+            var job = notifsta_cronjob.UpdateJob(job_id, moment(start_time), notifguts);
+        } catch (err){
+            return res.send({ status: "error", data: err})
+        }
         var promise = notifsta_mongodb.UpdateCronJob(
             job.id,
             job.start_time,
             job.message
         );
+        
         promise.success(function (docs){
             res.send({
-                status: "success"
+                status: "success",
+                data: {
+                    id: job.id,
+                    channel_id: job.channel_id,
+                    start_time: job.start_time.toISOString(),
+                    message: job.message
+                }
             });
+            console.log(JSON.stringify({
+                type: 'updated_job',
+                id: job.id,
+                channel_id: job.channel_id,
+                start_time: job.start_time.toISOString(),
+                message: job.message
+            }))
         })
         promise.error(function (err){
             console.log(err);
-            notifsta_cronjob.RemoveJob(new_job.id);// remove cron job
-            res.send({
-                status: "error"
-            })
+            res.send({ status: "error", data: "Failed to update notification in database" })
         })
+    });
+    app.delete('/scheduled_notifications/:channel_id/:job_id', function (req, res) {
+        var job_id = req.params.job_id;
+        try {
+            notifsta_cronjob.DeleteJob(job_id);
+        } catch (err) {
+            return res.send({ status: "error", data: err })
+        }
+
+        var promise = notifsta_mongodb.DeleteCronJob(job_id);
+        promise.success(function () {
+            res.send({ status: "success", data: "Notification successfully deleted" })
+            console.log(JSON.stringify({
+                type: 'deleted_job',
+                id: job_id,
+            }))
+        });
+        promise.error(function () {
+            res.send({ status: "error", data : "Failed to delete notification in database" })
+            console.log(JSON.stringify({
+                type: 'error',
+                comment: "Failed to delete notification in database"
+            }))
+        });
     });
 
     app.listen(3403);

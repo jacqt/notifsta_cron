@@ -1,4 +1,4 @@
-var DEBUGGING = true;
+var DEBUGGING = false;
 
 var CronJob = require('cron').CronJob; // NodeCron Library
 var moment = require('moment'); // MomentJs Time library
@@ -77,7 +77,7 @@ function SetJob(job) {
     }
     
     function on_successful_send() {
-        RemoveJob(job);
+        DeleteJob(job);
     }
     try {
         var cron_job = new CronJob(
@@ -114,7 +114,9 @@ function SendNotification(channel_id, message, callback) {
     }, function (error, response, body) {
         if (!error && response.statusCode == 200) {
             console.log(body)
-            callback();
+            if (callback) {
+                callback();
+            }
         }
     }
     );
@@ -130,21 +132,27 @@ function AddJob(channel_id, start_time, message, job_id) {
     return job;
 }
 
-function RemoveJob(job_id) {
+function DeleteJob(job_id) {
     var job = jobs[job_id];
+    if (!job) {
+        throw "Scheduled notification not found in database"
+    }
     job.Cancel();
     delete jobs[job_id];
 }
 
 function UpdateJob(job_id, start_time, message) {
     var job = jobs[job_id];
+    if (!job) {
+        throw "Scheduled notification not found in database"
+    }
     job.Update(start_time, message);
     return job;
 }
 
 module.exports = {
     AddJob : AddJob,
-    RemoveJob: RemoveJob,
+    DeleteJob: DeleteJob,
     UpdateJob: UpdateJob,
     Jobs: jobs
 }
