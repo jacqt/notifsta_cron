@@ -292,6 +292,7 @@ function StartServer() {
             var job_id = req.params.job_id;
             var user_email = req.query.user_email;
             var user_token = req.query.user_token;
+            var channel_id = parseInt(req.params.channel_id);
             notifsta_cronjob.DeleteJob(job_id);
         } catch (err) {
             return res.send({ status: "error", data: err })
